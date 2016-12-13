@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../../models/user');
 var isValidPassword = require('./password');
+var flash = require('connect-flash');
 
 var strategy = new LocalStrategy({
     usernameField : 'email',

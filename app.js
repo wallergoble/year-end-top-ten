@@ -38,7 +38,10 @@ app.use(session({ secret: 'WDI Rocks',
                   saveOnInitialize: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
+
 require('./config/passport/passport')(passport);
+
 
 app.use('/', index);
 app.use('/users', users);
