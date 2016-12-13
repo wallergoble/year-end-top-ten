@@ -6,7 +6,25 @@ html
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css", integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r", crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
-    
+    .flash
+      - if (typeof message !== 'undefined') {
+        - if (typeof message.error !== 'undefined' && message.error.length > 0) {
+            .bg-danger=  message.error
+        - }
+        - if (typeof message.info !== 'undefined' && message.info.length > 0) {
+//- <div class="flash">
+//-   <% if (typeof message !== 'undefined') { %>
+//-     <% if (typeof message.error !== 'undefined' && message.error.length > 0) { %>
+//-       <div class="bg-danger"><%= message.error %></div>
+//-     <% } %>
+//-     <% if (typeof message.info !== 'undefined' && message.info.length > 0) { %>
+//-       <div class="bg-info"><%= message.info %></div>
+//-     <% } %>
+//-     <% if (typeof message.success !== 'undefined' && message.success.length > 0) { %>
+//-       <div class="bg-success"><%= message.success %></div>
+//-     <% } %>
+//-   <% } %>
+//- </div>
   body
   include partials/header.pug
   block content

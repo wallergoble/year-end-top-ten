@@ -14,6 +14,7 @@ const flash = require('connect-flash');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
+const lists = require('./routes/lists');
 
 const app = express();
 
@@ -33,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
-app.use(session({ secret: 'WDI Rocks',
+app.use(session({ secret: 'WDI sux',
                   resave: true,
                   saveOnInitialize: true }));
 app.use(passport.initialize());
@@ -45,6 +46,7 @@ require('./config/passport/passport')(passport);
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/lists', lists);
 
 
 // catch 404 and forward to error handler

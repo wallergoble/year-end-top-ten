@@ -6,8 +6,7 @@ const ListSchema = new mongoose.Schema({
     description:{ type: String },
     // comment: []
     // rating:     { type: Number }
-    }
-    }
+    }, { timestamps: true }
 });
 
 module.exports = mongoose.model('List', ListSchema);
