@@ -38,7 +38,7 @@ app.use(methodOverride('_method'));
 
 app.use(session({ secret: 'WDI sux',
                   resave: true,
-                  saveOnInitialize: true }));
+                  saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

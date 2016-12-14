@@ -1,4 +1,11 @@
 extends ../layout
 
 block content
-    h1
+    h1 My Lists
+
+    ul
+    - lists.forEach( list => {
+      li= list.title + ' - ' + list.description
+    - })
+
+    a.btn.btn-success(href="/lists/new") Add List

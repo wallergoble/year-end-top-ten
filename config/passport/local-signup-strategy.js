@@ -9,8 +9,10 @@ var strategy = new LocalStrategy({
   },
   function(req, email, password, callback) {
 
+    console.log('we are in the signup strategy');
+
     // check password confirmation
-    if (req.body.password !== req.body.passwordConfirmation) {
+    if (req.body.password !== req.body.confirmPassword) {
       return callback(null, false, req.flash('error', 'Password and Password Confirmation do not match.'));
     }
 
@@ -24,7 +26,7 @@ var strategy = new LocalStrategy({
       }
       else if (isValidPassword(password)) {
         // Create a new user
-        var newUser            = new User();
+        var newUser            = new User(req.body);
         newUser.local.email    = email;
         newUser.local.password = newUser.encrypt(password);
         return newUser.save()

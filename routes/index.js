@@ -3,16 +3,16 @@ var router = express.Router();
 const passport = require('passport');
 
 
-// GET / 
+// GET /
 router.get('/', function(req, res, next) {
   console.log('connecting to index');
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express', message:req.flash() });
 });
 
 // GET /signup
 router.get('/signup', function(req, res, next){
   console.log('going to signup');
-  res.render('signup');
+  res.render('signup', { message: req.flash() });
 });
 
 // POST /signup
@@ -29,7 +29,7 @@ router.post('/signup', function(req, res, next){
 // GET /login
 router.get('/login', function(req, res, next){
   console.log('going to login');
-  res.render('login');
+  res.render('login', { message:req.flash() });
 });
 
 // POST /login
@@ -49,4 +49,3 @@ router.get('/logout', function(req, res, next) {
 });
 
 module.exports = router;
-

@@ -8,17 +8,21 @@ nav.navbar.navbar-inverse( role="navigation" )
         a.navbar-brand(href="#") YET10
 
     #navbar-default.collapse.navbar-collapse
-        ul.nav.navbar-nav
+        ul.nav.navbar-nav.navbar-right
             li: a( href="/") Root
-            li: a( href="/signup" ) Signup
-            li: a( href="/login" ) Login
+            - if (currentUser) {
+              li: a( href="#")= currentUser.local.email
+              li: a( href="/logout") Logout
+            - }
+            - else {
+              li: a( href="/login" ) Login
+              li: a( href="/signup" ) Signup
+            - }
             li: a( href="/lists" ) Lists
             li: a( href="/lists/new" ) New form
 
-
 .flash
-- console.log('this happens');
-- console.log(message);
+- console.log('this happens:', message);
 - if (typeof message !== 'undefined') {
     - if (typeof message.error !== 'undefined' && message.error.length > 0) {
         - console.log('this happened?')
@@ -27,7 +31,7 @@ nav.navbar.navbar-inverse( role="navigation" )
     - if (typeof message.info !== 'undefined' && message.info.length > 0) {
         .bg-info= message.info
 - }
-    - if (typeof message.success !== 'undefined' && message.success.length > 0) { 
+    - if (typeof message.success !== 'undefined' && message.success.length > 0) {
         .bg-success= message.info
     - }
 - }
