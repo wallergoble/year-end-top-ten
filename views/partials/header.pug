@@ -13,3 +13,21 @@ nav.navbar.navbar-inverse( role="navigation" )
             li: a( href="/signup" ) Signup
             li: a( href="/login" ) Login
             li: a( href="/lists" ) Lists
+            li: a( href="/lists/new" ) New form
+
+
+.flash
+- console.log('this happens');
+- console.log(message);
+- if (typeof message !== 'undefined') {
+    - if (typeof message.error !== 'undefined' && message.error.length > 0) {
+        - console.log('this happened?')
+        .bg-danger=  message.error
+- }
+    - if (typeof message.info !== 'undefined' && message.info.length > 0) {
+        .bg-info= message.info
+- }
+    - if (typeof message.success !== 'undefined' && message.success.length > 0) { 
+        .bg-success= message.info
+    - }
+- }

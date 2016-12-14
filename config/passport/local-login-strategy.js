@@ -9,8 +9,6 @@ var strategy = new LocalStrategy({
     // Search for a user with this email
     User.findOne({ 'local.email' : email }, function(err, user) {
       if (err) return callback(err);
-      
-
       // If no user is found
       if (!user) {
         console.log('Didnt find a user');

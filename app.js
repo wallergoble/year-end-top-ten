@@ -12,9 +12,11 @@ const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
 
+// Requiring routes
 const index = require('./routes/index');
 const users = require('./routes/users');
 const lists = require('./routes/lists');
+
 
 const app = express();
 
@@ -43,10 +45,17 @@ app.use(flash());
 
 require('./config/passport/passport')(passport);
 
+// This middleware will allow us to use the currentUser in our views and routes.
+app.use(function (req, res, next) {
+  global.currentUser = req.user;
+  next();
+});
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/lists', lists);
+
+
 
 
 // catch 404 and forward to error handler
