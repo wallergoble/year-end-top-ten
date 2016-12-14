@@ -25,11 +25,14 @@ router.get('/new', function(req, res, next){
 router.post('/', function(req, res, next){
     console.log('currentUser:', currentUser);
     console.log('req.body:', req.body);
+    console.log('req.body.item:', req.body.item);
+    
 
-    var list = new List({
+        var list = new List({
         user:        currentUser,
         title:       req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        item:        req.body.item        
     });
     console.log('about to create list:', list);
     List.create(list)

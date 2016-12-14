@@ -10,8 +10,8 @@ block content
             form(method='POST' action='/login')
                 div.form-group
                     label(for='email') Email:
-                    input#email.form-control(type='email', placeholder='name@email.com' name='email')
+                    input#email.form-control(type='email', placeholder='name@email.com' value="asdf@asdf.com" name='email')
                 div.form-group
                     label(for='password') Password:
-                    input#pw.form-control(type='password' placeholder='Must be at least 8 characters' name='password')
+                    input#pw.form-control(type='password' placeholder='Must be at least 8 characters' value="asdfasdf" name='password')
                 button.btn.btn-primary(type='submit') Sign in

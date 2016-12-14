@@ -10,8 +10,24 @@ block content
         form(method='POST' action='/lists')
             div.form-group
                 label(for='title') Title:
-                input#title.form-control(type='text', placeholder='My favorite horror movies' name='title')
+                input#title.form-control(type='text', 
+                                            placeholder='My favorite horror movies' 
+                                            name='title')
             div.form-group
                 label(for='description') Description:
-                input#description.form-control(type='text', placeholder='These are my favorite horror movies' name='description')
+                input#description.form-control(type='text',
+                                                placeholder='These are my favorite horror movies' 
+                                                name='description')
+            div.form-group
+                label(for='item') item:
+                input#item.form-control(type='text',
+                                        placeholder='Favorite Things - John Coltrane' 
+                                        name='item')
+            div.form-group
+                label(for='item') item:
+                input#item.form-control(type='text',
+                                        placeholder='Favorite Things - John Coltrane' 
+                                        name='item')
+
             button.btn.btn-primary(type='submit') Submit!
+
