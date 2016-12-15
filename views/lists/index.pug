@@ -2,10 +2,9 @@ extends ../layout
 
 block content
     h1 My Lists
-
     - lists.forEach( list => {        // Nested forEach, consider refactoring later
-      .well
-        h3= list.title         
+      .well        
+        h3: a(href='/lists/' + list._id)= list.title         
         h4= list.description
           ol
           - list.item.forEach( item => {

@@ -4,8 +4,10 @@ const ListSchema = new mongoose.Schema({
     user:        { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     title:       { type: String, required: true },
     description: { type: String },
-    item:        [ { type: String } ]
-    // comment: [ Comment.schema ]
+    item:        [ 
+                    { type: String } 
+                 ]
+    // comment: [ Comment.Schema ]
     // rating:     { type: Number }
 });
 
