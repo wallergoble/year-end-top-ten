@@ -37,7 +37,9 @@ router.get('/', function(req, res, next){
 
 // GET /lists/new
 router.get('/new', function(req, res, next){
-    res.render('lists/new', { message:req.flash() });
+    var list = new List({});
+
+    res.render('lists/new', { message:req.flash(), list: list });
 });
 
 // POST /lists
@@ -75,6 +77,35 @@ router.get('/:id', authenticate, function(req, res, next) {
   });
 });
 
+// EDIT
+router.get('/:id/edit', authenticate, function(req, res, next) {
+  List.findById(req.params.id)
+  .then(function(list) {
+    if (!list) return next(makeError(res, 'Document not found', 404));
+    if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
+    res.render('lists/edit', { list: list });
+  })
+  .catch(function(err) {
+    return next(err);
+  });
+});
+
+// UPDATE
+router.put('/:id', authenticate, function(req, res, next) {
+  List.findById(req.params.id)
+  .then(function(lists) {
+    if (!lists) return next(makeError(res, 'Document not found', 404));
+    if (!lists.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.!', 401));
+    lists = req.body;
+    return lists.save();
+  })
+  .then(function(saved) {
+    return res.redirect('/lists');
+  })
+  .catch(function(err) {
+    return next(err);
+  });
+});
 
 
 

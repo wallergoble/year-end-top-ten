@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+    .main.container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.display-4.m-b-2 Make a new list!
+
+        // New list form
+        form(method='POST' action='/lists/' + list._id)
+            div.form-group
+                label(for='title') Title:
+                input#title.form-control(type='text', 
+                                            placeholder='My favorite horror movies' 
+                                            name='title')
+            div.form-group
+                label(for='description') Description:
+                input#description.form-control(type='text',
+                                                placeholder='These are my favorite horror movies' 
+                                                name='description')
+
+            include ../partials/listItems.pug
+            button.btn.btn-primary(type='submit') Submit!
