@@ -7,7 +7,7 @@ block content
         h1.display-4.m-b-2 Edit your list!
 
         // EDIT list form
-        form(method='PUT' action='/lists/' + list._id)
+        form(method='POST' action='/lists/' + list._id + '?_method=PUT')
             div.form-group
                 label(for='title') Title:
                 input#title.form-control(type='text', 
@@ -21,54 +21,54 @@ block content
                                                 name='description'
                                                 value=list.description)
             div.form-group
-                label(for='item') 10
+                label(for='item10') 10
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item10'
                                         value=list.item[0])
             div.form-group
-                label(for='item') 9
+                label(for='item9') 9
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item9'
                                         value=list.item[1])
             div.form-group
-                label(for='item') 8
+                label(for='item8') 8
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item8'
                                         value=list.item[2])
             div.form-group
-                label(for='item') 7
+                label(for='item7') 7
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item7'
                                         value=list.item[3])
             div.form-group
-                label(for='item') 6
+                label(for='item6') 6
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item6'
                                         value=list.item[4])
             div.form-group
-                label(for='item') 5
+                label(for='item5') 5
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item5'
                                         value=list.item[5])
             div.form-group
-                label(for='item') 4
+                label(for='item4') 4
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item4'
                                         value=list.item[6])
             div.form-group
-                label(for='item') 3
+                label(for='item3') 3
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item3'
                                         value=list.item[7])
             div.form-group
-                label(for='item') 2
+                label(for='item2') 2
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item2'
                                         value=list.item[8])
             div.form-group
-                label(for='item') 1
+                label(for='item1') 1
                 input#item.form-control(type='text',
-                                        name='item'
+                                        name='item1'
                                         value=list.item[9])
 
             button.btn.btn-success(type='submit') Submit!

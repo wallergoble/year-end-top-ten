@@ -93,23 +93,35 @@ router.get('/:id/edit', authenticate, function(req, res, next) {
 router.put('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(list) {
-    console.log(list);
     if (!list) return next(makeError(res, 'Document not found', 404));
     if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
     console.log('list', list);
     list.title = req.body.title;
     list.description = req.body.description;
-    // list.item.forEach( n => {
-    //   console.log(list.item);
-    //   console.log(list.item[n]);
-    //   list.item[n] = req.body.item[n];
-    //   console.log(list.item[n]);
-    // });
+    console.log('look over here this is the requests 10th body item', req.body.item10);
+    console.log('this should be list item[0], or the number 10 on the list', list.item[0]);
+      // newItemArray = [];
+      // for (let i = 10; i > list.item.length; i--) {
+      //   newItemArray.push(req.body.item + i) // push(req.body.itemi)
+      // }
+      //   n = req.body.item
+      // })
+      list.item[0] = req.body.item10;
+      list.item[1] = req.body.item9;
+      list.item[2] = req.body.item8;
+      list.item[3] = req.body.item7;
+      list.item[4] = req.body.item6;
+      list.item[5] = req.body.item5;
+      list.item[6] = req.body.item4;
+      list.item[7] = req.body.item3;
+      list.item[8] = req.body.item2;
+      list.item[9] = req.body.item1;
+      list.markModified('item');
     console.log(list);
     return list.save();
   })
   .then(function(saved) {
-    res.redirect('/');
+    res.redirect('/lists');
   })
   .catch(function(err) {
     return next(err);
