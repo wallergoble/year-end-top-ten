@@ -6,10 +6,10 @@ const ListSchema = new mongoose.Schema({
     description: { type: String },
     item:        [ 
                     { type: String } 
-                 ],
-    comment:     [ 
-                    { type: String } 
                  ]
+    // comment:     [ 
+    //                 { type: String } 
+    //              ]
     
     // rating:     { type: Number }
 });

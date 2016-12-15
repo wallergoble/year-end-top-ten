@@ -4,20 +4,71 @@ block content
     .main.container
     .row
       .col-md-6.col-md-offset-3
-        h1.display-4.m-b-2 Make a new list!
+        h1.display-4.m-b-2 Edit your list!
 
-        // New list form
-        form(method='POST' action='/lists/' + list._id)
+        // EDIT list form
+        form(method='PUT' action='/lists/' + list._id)
             div.form-group
                 label(for='title') Title:
                 input#title.form-control(type='text', 
                                             placeholder='My favorite horror movies' 
-                                            name='title')
+                                            name='title'
+                                            value=list.title)
             div.form-group
                 label(for='description') Description:
                 input#description.form-control(type='text',
                                                 placeholder='These are my favorite horror movies' 
-                                                name='description')
+                                                name='description'
+                                                value=list.description)
+            div.form-group
+                label(for='item') 10
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[0])
+            div.form-group
+                label(for='item') 9
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[1])
+            div.form-group
+                label(for='item') 8
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[2])
+            div.form-group
+                label(for='item') 7
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[3])
+            div.form-group
+                label(for='item') 6
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[4])
+            div.form-group
+                label(for='item') 5
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[5])
+            div.form-group
+                label(for='item') 4
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[6])
+            div.form-group
+                label(for='item') 3
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[7])
+            div.form-group
+                label(for='item') 2
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[8])
+            div.form-group
+                label(for='item') 1
+                input#item.form-control(type='text',
+                                        name='item'
+                                        value=list.item[9])
 
-            include ../partials/listItems.pug
-            button.btn.btn-primary(type='submit') Submit!
+            button.btn.btn-success(type='submit') Submit!

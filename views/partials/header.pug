@@ -12,6 +12,7 @@ nav.navbar.navbar-inverse( role="navigation" )
             li: a( href="/") Root
             - if (currentUser) {
               li: a( href="#")= currentUser.local.email
+              li: a( href="/lists/new") #[span.glyphicon.glyphicon-plus(aria-hidden="true")] New List
               li: a( href="/logout") Logout
             - }
             - else {
@@ -19,7 +20,6 @@ nav.navbar.navbar-inverse( role="navigation" )
               li: a( href="/signup" ) Signup
             - }
             li: a( href="/lists" ) Lists
-            li: a( href="/lists/new" ) New form
 
 .flash
 - if (typeof message !== 'undefined') {

@@ -92,14 +92,24 @@ router.get('/:id/edit', authenticate, function(req, res, next) {
 // UPDATE
 router.put('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
-  .then(function(lists) {
-    if (!lists) return next(makeError(res, 'Document not found', 404));
-    if (!lists.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
-    lists = req.body;     // Total reassignment not working out. Loop?
-    return lists.save();
+  .then(function(list) {
+    console.log(list);
+    if (!list) return next(makeError(res, 'Document not found', 404));
+    if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
+    console.log('list', list);
+    list.title = req.body.title;
+    list.description = req.body.description;
+    // list.item.forEach( n => {
+    //   console.log(list.item);
+    //   console.log(list.item[n]);
+    //   list.item[n] = req.body.item[n];
+    //   console.log(list.item[n]);
+    // });
+    console.log(list);
+    return list.save();
   })
   .then(function(saved) {
-    return res.redirect('/lists');
+    res.redirect('/');
   })
   .catch(function(err) {
     return next(err);

@@ -11,7 +11,7 @@ block content
             - list.item.forEach( item => {
               li= item
             - })
-          button.btn-danger.button-xs(type='submit') Delete?
-          button.btn-primary.button-xs: a(href='/lists/' + list._id + '/edit') Edit this list!
+          button.btn.btn-danger.button-xs(type='submit') Delete?
+          button.btn.btn-primary.button-xs: a(href='/lists/' + list._id + '/edit') Edit this list!
     - })
-    a.btn.btn-success(href="/lists/new") Add List
+    a.btn.btn-success(href="/lists/new") #[span.glyphicon.glyphicon-plus(aria-hidden="true")] Add List
