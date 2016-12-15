@@ -26,8 +26,6 @@ router.post('/', function(req, res, next){
     console.log('currentUser:', currentUser);
     console.log('req.body:', req.body);
     console.log('req.body.item:', req.body.item);
-    
-
         var list = new List({
         user:        currentUser,
         title:       req.body.title,
@@ -45,8 +43,19 @@ router.post('/', function(req, res, next){
     });
 });
 
+// // SHOW /lists/:id
+// router.get('/:id', authenticate, function(req, res, next) {
+//   List.findById(req.params.id)
+//   .then(function(list) {
+//     if (!list) return next(makeError(res, 'Document not found', 404));
+//     if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk!', 401));
+//     res.render('lists/show', { list: list });
+//   })
+//   .catch(function(err) {
+//     return next(err);
+//   });
+// });
 
-// SHOW /lists/new
 
 
 

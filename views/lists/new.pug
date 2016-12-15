@@ -18,16 +18,7 @@ block content
                 input#description.form-control(type='text',
                                                 placeholder='These are my favorite horror movies' 
                                                 name='description')
-            div.form-group
-                label(for='item') item:
-                input#item.form-control(type='text',
-                                        placeholder='Favorite Things - John Coltrane' 
-                                        name='item')
-            div.form-group
-                label(for='item') item:
-                input#item.form-control(type='text',
-                                        placeholder='Favorite Things - John Coltrane' 
-                                        name='item')
 
+            include ../partials/listItems.pug
             button.btn.btn-primary(type='submit') Submit!
 
