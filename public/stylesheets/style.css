@@ -2,8 +2,19 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
+nav {
+    font-family: 'Nunito Sans', sans-serif;
+}
 a {
   color: #00B7FF;
 }
 
+
+button > a {
+  text-decoration: none;
+  color: white;
+}
+
+li {
+  font-family: 'Space Mono', monospace;
+}
