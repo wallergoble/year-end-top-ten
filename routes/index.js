@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   console.log('connecting to index');
   let loginMessage = null;
   if (currentUser) return res.render('index', { loginMessage: 'Hi ' + currentUser.local.email + '! Click on lists to view your lists!', user: currentUser, message:req.flash() });
-  else return res.render('index', { loginMessage: 'Hello! Click sign up so you can start making lists!', message:req.flash() });
+  else return res.render('index', { loginMessage: 'If you are a new user, press sign up and make an account! Otherwise, login!', message:req.flash() });
 });
 
 // GET /signup

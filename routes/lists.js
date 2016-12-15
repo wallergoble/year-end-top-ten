@@ -4,7 +4,7 @@ const passport = require('passport');
 
 const List = require('../models/list')
 
-// Error handler
+// Helper function to display errors
 function makeError(res, message, status) {
   res.statusCode = status;
   var error = new Error(message);
@@ -42,7 +42,7 @@ router.get('/new', function(req, res, next){
     res.render('lists/new', { message:req.flash(), list: list });
 });
 
-// POST /lists
+// CREATE
 router.post('/', function(req, res, next){
     console.log('currentUser:', currentUser);
     console.log('req.body:', req.body);
@@ -69,7 +69,6 @@ router.get('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(list) {
     if (!list) return next(makeError(res, 'Document not found', 404));
-    if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk!', 401));
     res.render('lists/show', { list: list });
   })
   .catch(function(err) {
@@ -95,8 +94,8 @@ router.put('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(lists) {
     if (!lists) return next(makeError(res, 'Document not found', 404));
-    if (!lists.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.!', 401));
-    lists = req.body;
+    if (!lists.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
+    lists = req.body;     // Total reassignment not working out. Loop?
     return lists.save();
   })
   .then(function(saved) {
@@ -107,6 +106,21 @@ router.put('/:id', authenticate, function(req, res, next) {
   });
 });
 
+// DESTROY
+router.delete('/:id', authenticate, function(req, res, next) {
+  List.findById(req.params.id)
+  .then(function(list) {
+    if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
+    return list.remove();
+  })
+  .then(function() {
+    console.log('deleted a list, going back to /lists')
+    res.redirect('/lists');
+  })
+  .catch(function(err) {
+    return next(err);
+  });
+});
 
 
 

@@ -4,13 +4,14 @@ block content
     h1 My Lists
     - lists.forEach( list => {        // Nested forEach, consider refactoring later
       .well        
-        h3: a(href='/lists/' + list._id)= list.title         
-        h4= list.description
-          ol
-          - list.item.forEach( item => {
-            li= item
-          - })
-        button: a(href='/lists/' + list._id + '/edit') Edit this binch
+        form(action='/lists/' + list._id + '?_method=DELETE' method="POST")
+          h3: a(href='/lists/' + list._id)= list.title         
+          h4= list.description
+            ol
+            - list.item.forEach( item => {
+              li= item
+            - })
+          button.btn-danger.button-xs(type='submit') Delete?
+          button.btn-primary.button-xs: a(href='/lists/' + list._id + '/edit') Edit this list!
     - })
-//- <a href='/recipes/<%= recipe._id %>' class='btn btn-primary'>More
     a.btn.btn-success(href="/lists/new") Add List
