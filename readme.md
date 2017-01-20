@@ -50,3 +50,12 @@ While this was a very annoying issue, I came out of it with a greater understand
 
 ## Takeaways
 This project drilled into me the nature of the request response cycle of HTTP. At the end I felt like I truly grokked the idea of Representational State Transfer, aka REST and it's importance to the web as we know it.
+
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I hope you enjoy this website!
+
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
