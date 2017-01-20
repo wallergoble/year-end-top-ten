@@ -4,10 +4,9 @@ block content
     h1 My Lists
     - lists.forEach( list => {        // Nested forEach, consider refactoring later
       .well        
-        
           h3: a(href='/lists/' + list._id)= list.title         
           h4= list.description
-            ol
+            ol        // This isn't outputting an ordered list. No idea how or why. 
             - list.item.forEach( item => {
               li= item
             - })
