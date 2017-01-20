@@ -1,5 +1,9 @@
 # YearEndTopTen
 
+Deployed App:
+<br>
+Trello Board:
+
 ## Technologies
 * Languages: Javascript, HTML5, CSS3
 * Frameworks: Node.js, Express.js, Passport.js, Bootstrap.css
