@@ -24,8 +24,8 @@ function authenticate(req, res, next) {
 }
 
 // GET /lists
+// Index route that returns all lists
 router.get('/', function(req, res, next){
-  console.log('going to lists');
   List.find({ user: currentUser })
   .then( lists => {
     res.render('lists/index', { user: currentUser, lists: lists, message:req.flash() });
@@ -36,27 +36,23 @@ router.get('/', function(req, res, next){
 });
 
 // GET /lists/new
+// Retrieves new form
 router.get('/new', function(req, res, next){
     var list = new List({});
-
     res.render('lists/new', { message:req.flash(), list: list });
 });
 
 // CREATE
+// Post route that sends new list to the server
 router.post('/', function(req, res, next){
-    console.log('currentUser:', currentUser);
-    console.log('req.body:', req.body);
-    console.log('req.body.item:', req.body.item);
         var list = new List({
         user:        currentUser,
         title:       req.body.title,
         description: req.body.description,
         item:        req.body.item        
     });
-    console.log('about to create list:', list);
     List.create(list)
     .then(function(saved){
-        console.log('just saved list:', saved);
         res.redirect('/lists');
     })
     .catch(function(err) {
@@ -65,6 +61,7 @@ router.post('/', function(req, res, next){
 });
 
 // SHOW /lists/:id
+// Read individual list
 router.get('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(list) {
@@ -77,6 +74,7 @@ router.get('/:id', authenticate, function(req, res, next) {
 });
 
 // EDIT
+// Gets edit form for an individual list
 router.get('/:id/edit', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(list) {
@@ -90,22 +88,14 @@ router.get('/:id/edit', authenticate, function(req, res, next) {
 });
 
 // UPDATE
+// PUTs edited information to server
 router.put('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(list) {
     if (!list) return next(makeError(res, 'Document not found', 404));
     if (!list.user.equals(currentUser.id)) return next(makeError(res, 'Get your own list, punk.', 401));
-    console.log('list', list);
     list.title = req.body.title;
     list.description = req.body.description;
-    console.log('look over here this is the requests 10th body item', req.body.item10);
-    console.log('this should be list item[0], or the number 10 on the list', list.item[0]);
-      // newItemArray = [];
-      // for (let i = 10; i > list.item.length; i--) {
-      //   newItemArray.push(req.body.item + i) // push(req.body.itemi)
-      // }
-      //   n = req.body.item
-      // })
       list.item[0] = req.body.item10;
       list.item[1] = req.body.item9;
       list.item[2] = req.body.item8;
@@ -116,8 +106,8 @@ router.put('/:id', authenticate, function(req, res, next) {
       list.item[7] = req.body.item3;
       list.item[8] = req.body.item2;
       list.item[9] = req.body.item1;
+      // Need this line for mongoose to realize the array has been modified
       list.markModified('item');
-    console.log(list);
     return list.save();
   })
   .then(function(saved) {
@@ -129,6 +119,7 @@ router.put('/:id', authenticate, function(req, res, next) {
 });
 
 // DESTROY
+// all humans
 router.delete('/:id', authenticate, function(req, res, next) {
   List.findById(req.params.id)
   .then(function(list) {
@@ -136,14 +127,11 @@ router.delete('/:id', authenticate, function(req, res, next) {
     return list.remove();
   })
   .then(function() {
-    console.log('deleted a list, going back to /lists')
     res.redirect('/lists');
   })
   .catch(function(err) {
     return next(err);
   });
 });
-
-
 
 module.exports = router;

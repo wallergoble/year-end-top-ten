@@ -4,8 +4,8 @@ const passport = require('passport');
 
 
 // GET /
+// Initial landing page render
 router.get('/', function(req, res, next) {
-  console.log('connecting to index');
   let loginMessage = null;
   if (currentUser) return res.render('index', { loginMessage: 'Hi ' + currentUser.local.email + '! Click on lists to view your lists!', user: currentUser, message:req.flash() });
   else return res.render('index', { loginMessage: 'If you are a new user, press sign up and make an account! Otherwise, login!', message:req.flash() });
@@ -13,13 +13,11 @@ router.get('/', function(req, res, next) {
 
 // GET /signup
 router.get('/signup', function(req, res, next){
-  console.log('going to signup');
   res.render('signup', { message: req.flash() });
 });
 
 // POST /signup
 router.post('/signup', function(req, res, next){
-  console.log('registering someone: ', req.body);
   var signUpStrategy = passport.authenticate('local-signup', {
     successRedirect : '/lists',
     failureRedirect : '/signup',
@@ -30,7 +28,6 @@ router.post('/signup', function(req, res, next){
 
 // GET /login
 router.get('/login', function(req, res, next){
-  console.log('going to login');
   res.render('login', { message:req.flash() });
 });
 
